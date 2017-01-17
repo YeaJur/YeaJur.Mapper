@@ -1,2 +1,2 @@
 # YeaJur.Mapper
-数据映射，包括实体转JSON、JSON转实体、实体浅拷贝、实体深拷贝等
+Data mapping, including entity to JSON, JSON to entity, entity shallow copy, entity deep copy, etc.
