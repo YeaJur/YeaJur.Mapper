@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YeaJur.Mapper", "YeaJur.Mapper\YeaJur.Mapper.csproj", "{2BD1365D-0F75-42C4-B8F8-A05D2C56C783}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YeaJur.Mapper.Tests", "YeaJur.Mapper.Tests\YeaJur.Mapper.Tests.csproj", "{F5FB5A96-C93A-4F0D-8991-477A5B33EE29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BD1365D-0F75-42C4-B8F8-A05D2C56C783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BD1365D-0F75-42C4-B8F8-A05D2C56C783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BD1365D-0F75-42C4-B8F8-A05D2C56C783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BD1365D-0F75-42C4-B8F8-A05D2C56C783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5FB5A96-C93A-4F0D-8991-477A5B33EE29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5FB5A96-C93A-4F0D-8991-477A5B33EE29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5FB5A96-C93A-4F0D-8991-477A5B33EE29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5FB5A96-C93A-4F0D-8991-477A5B33EE29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
