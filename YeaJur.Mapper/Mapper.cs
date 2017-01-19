@@ -30,7 +30,7 @@ namespace YeaJur.Mapper
     /// <summary>
     /// 对象映射和json实体转换
     /// </summary>
-    public static class Mappers
+    public static class Mapper
     {
 
         #region  ToJson ToModel
@@ -98,12 +98,38 @@ namespace YeaJur.Mapper
         /// <summary>
         /// 不同类型实体深度映射拷贝
         /// </summary>
+        /// <typeparam name="T2">接收对象类型</typeparam>
+        /// <param name="obj">可序列化对象</param>
+        /// <returns>接收对象</returns>
+        public static T2 Map<T2>(this object obj)
+        {
+            return obj.ToJson().ToModel<T2>();
+        }
+
+        /// <summary>
+        /// 不同类型实体深度映射拷贝
+        /// </summary>
         /// <typeparam name="T">被拷贝对象类型</typeparam>
         /// <typeparam name="T2">接收对象类型</typeparam>
         /// <param name="obj">可序列化对象</param>
         /// <param name="fieldsDictionary">字段名不同的字段字典集合，key：当前对象字段名，value：拷贝后的对象的字段名称</param>
         /// <returns>实体</returns>
         public static T2 Map<T, T2>(this T obj, Dictionary<string, string> fieldsDictionary)
+        {
+            var json = obj.ToJson();
+            if (fieldsDictionary != null && fieldsDictionary.Count > 0)
+                json = fieldsDictionary.Aggregate(json, (current, field) => current.Replace(field.Key, field.Value));
+            return json.ToModel<T2>();
+        }
+
+        /// <summary>
+        /// 不同类型实体深度映射拷贝
+        /// </summary>
+        /// <typeparam name="T2">接收对象类型</typeparam>
+        /// <param name="obj">可序列化对象</param>
+        /// <param name="fieldsDictionary">字段名不同的字段字典集合，key：当前对象字段名，value：拷贝后的对象的字段名称</param>
+        /// <returns>实体</returns>
+        public static T2 Map<T2>(this object obj, Dictionary<string, string> fieldsDictionary)
         {
             var json = obj.ToJson();
             if (fieldsDictionary != null && fieldsDictionary.Count > 0)
