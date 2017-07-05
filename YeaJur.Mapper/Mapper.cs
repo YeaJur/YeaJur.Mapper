@@ -147,7 +147,10 @@ namespace YeaJur.Mapper
         {
             var json = obj.ToJson();
             if (fieldsDictionary != null && fieldsDictionary.Count > 0)
+            {
                 json = fieldsDictionary.Aggregate(json, (current, field) => current.Replace(field.Key, field.Value));
+            }
+
             return json.ToModel<T2>();
         }
 
@@ -162,7 +165,10 @@ namespace YeaJur.Mapper
         {
             var json = obj.ToJson();
             if (fieldsDictionary != null && fieldsDictionary.Count > 0)
+            {
                 json = fieldsDictionary.Aggregate(json, (current, field) => current.Replace(field.Key, field.Value));
+            }
+
             return json.ToModel<T2>();
         }
 
