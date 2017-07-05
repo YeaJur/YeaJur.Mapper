@@ -22,8 +22,11 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
+using System.Web.Script.Serialization;
 
 namespace YeaJur.Mapper
 {
@@ -43,7 +46,7 @@ namespace YeaJur.Mapper
         /// <returns>Json字符串</returns>
         public static string ToJson<T>(this T jsonObject)
         {
-            var json = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var json = new JavaScriptSerializer();
             return json.Serialize(jsonObject);
         }
 
@@ -54,8 +57,34 @@ namespace YeaJur.Mapper
         /// <returns>json字符串</returns>
         public static string ToJson(this object obj)
         {
-            var json = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var json = new JavaScriptSerializer();
             return json.Serialize(obj);
+        }
+
+        /// <summary>
+        /// 对象转换成json
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="jsonObject">需要格式化的对象</param>
+        /// <param name="dateFormat">存在时间类型,设置时间格式</param>
+        /// <returns>Json字符串</returns>
+        public static string ToJson<T>(this T jsonObject, string dateFormat)
+        {
+            var js = new JavaScriptSerializer();
+            var json = js.Serialize(jsonObject);
+
+            if (!string.IsNullOrEmpty(dateFormat))
+            {
+                json = Regex.Replace(json, @"\\/Date\((\d+)\)\\/", match =>
+                {
+                    var dt = new DateTime(1970, 1, 1);
+                    dt = dt.AddMilliseconds(long.Parse(match.Groups[1].Value));
+                    dt = dt.ToLocalTime();
+                    return dt.ToString(dateFormat);
+                });
+            }
+
+            return json;
         }
 
         /// <summary>
@@ -65,7 +94,7 @@ namespace YeaJur.Mapper
         /// <param name="json">json字符串</param> 
         public static T ToModel<T>(this string json)
         {
-            var data = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var data = new JavaScriptSerializer();
             return data.Deserialize<T>(json);
         }
 
