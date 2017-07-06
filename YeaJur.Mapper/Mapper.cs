@@ -75,10 +75,19 @@ namespace YeaJur.Mapper
 
             if (!string.IsNullOrEmpty(dateFormat))
             {
+                //大于1970年的时间更换
                 json = Regex.Replace(json, @"\\/Date\((\d+)\)\\/", match =>
                 {
                     var dt = new DateTime(1970, 1, 1);
                     dt = dt.AddMilliseconds(long.Parse(match.Groups[1].Value));
+                    dt = dt.ToLocalTime();
+                    return dt.ToString(dateFormat);
+                });
+                //小于1970年的时间更换
+                json = Regex.Replace(json, @"\\/Date\(-(\d+)\)\\/", match =>
+                {
+                    var dt = new DateTime(1970, 1, 1);
+                    dt = dt.AddMilliseconds(-long.Parse(match.Groups[1].Value));
                     dt = dt.ToLocalTime();
                     return dt.ToString(dateFormat);
                 });

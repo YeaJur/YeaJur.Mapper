@@ -193,6 +193,14 @@ namespace YeaJur.Mapper.Tests
             model2.Other = "YeaJur.Mapper.Supplier";
         }
 
+        [TestMethod()]
+        public void DateTimeTest()
+        {
+            var model = new { Name = "YeaJur", Date1 = DateTime.Parse("1918-09-09") ,Date2=DateTime.Parse("2017-07-06")};
+            var json = model.ToJson("yyyy-MM-dd");
+            var str = json;
+        }
+
         private Order GetOrder()
         {
             var model = new Order
